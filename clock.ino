@@ -17,8 +17,8 @@
 #endif
 
 
-const char* ssid     = "Tribun";
-const char* password = "9162103173";
+const char* ssid     = "";
+const char* password = "";
 
 const long utcOffsetInSeconds = 10800;
 
