@@ -13,8 +13,8 @@
 #endif
 
 //const char server[] = "dataservice.accuweather.com";
-const char* ssid     = "Tribun";
-const char* password = "9162103173";
+const char* ssid     = "";
+const char* password = "";
 
 const char* host = "api.openweathermap.org";
 String line; 
