@@ -16,12 +16,13 @@
 U8G2_ST7920_128X64_F_SW_SPI u8g2(U8G2_R0, /* clock=*/ 18, /* data=*/ 23, /* CS=*/ 5, /* reset=*/ 22);
 
 const long utcOffsetInSeconds = 10800;
+unsigned long timing;
 
 char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
 //const char server[] = "dataservice.accuweather.com";
-const char* ssid     = "Tribun";
-const char* password = "9162103173";
+const char* ssid     = "eciface2";
+const char* password = "1q2w3e4r5t6y";
 
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, "pool.ntp.org", utcOffsetInSeconds);
@@ -73,6 +74,7 @@ void loop() {
   }
   
   timeClient.update();
+  
 
                               /// отправка в Serial
   Serial.println();  
@@ -162,6 +164,11 @@ void loop() {
 
   u8g2.sendBuffer();
 
+  if (millis() - timing > 600000){
+    jsonGet();
+    timing = millis();
+  }
+
 }
  
 
@@ -180,7 +187,7 @@ void jsonGet() {
     client.println("Connection: close");
     client.println();
  
-  delay(500);
+  delay(1000);
   // Read all the lines of the reply from server and print them to Serial
   while(client.available()){
     line = client.readStringUntil('\r');
